@@ -8,17 +8,20 @@ import {
   Sparkles,
   UtensilsCrossed,
 } from 'lucide-react';
+import type { WorkbookSource } from '@/types/trip';
+import { hasWorkbookValue } from '@/utils/formatWorkbookValue';
 
 type DetailIcon = 'calendar' | 'clock' | 'sparkles' | 'food';
 
 export type RecommendationCardData = {
   category: 'STAY' | 'EXPERIENCE' | 'FOOD';
   title: string;
-  price: string;
+  price?: string;
   priceSuffix?: string;
   location: string;
   image: string;
   imageAlt: string;
+  source: WorkbookSource;
   details: { icon: DetailIcon; text: string; highlight?: boolean }[];
 };
 
@@ -33,7 +36,11 @@ export function RecommendationCard({ item }: { item: RecommendationCardData }) {
   const [saved, setSaved] = useState(false);
 
   return (
-    <article className="recommendation-card">
+    <article
+      className="recommendation-card"
+      data-source-worksheet={item.source.worksheet}
+      data-source-row={item.source.row}
+    >
       <div className="card-image-wrap">
         <Image
           className="card-image"
@@ -57,10 +64,12 @@ export function RecommendationCard({ item }: { item: RecommendationCardData }) {
       <div className="card-content">
         <div className="card-meta-row">
           <span className={`card-type ${item.category.toLowerCase()}`}>{item.category}</span>
-          <div className="card-price">
-            <strong>{item.price}</strong>
-            {item.priceSuffix && <span>{item.priceSuffix}</span>}
-          </div>
+          {(hasWorkbookValue(item.price) || hasWorkbookValue(item.priceSuffix)) && (
+            <div className="card-price">
+              {hasWorkbookValue(item.price) && <strong>{item.price}</strong>}
+              {hasWorkbookValue(item.priceSuffix) && <span>{item.priceSuffix}</span>}
+            </div>
+          )}
         </div>
 
         <h3>{item.title}</h3>
@@ -69,18 +78,22 @@ export function RecommendationCard({ item }: { item: RecommendationCardData }) {
           <span>{item.location}</span>
         </div>
 
-        <div className="card-divider" />
-        <ul className="card-details">
-          {item.details.map(({ icon, text, highlight }) => {
-            const Icon = detailIcons[icon];
-            return (
-              <li className={highlight ? 'highlight-detail' : ''} key={text}>
-                <Icon size={15} strokeWidth={1.8} aria-hidden="true" />
-                <span>{text}</span>
-              </li>
-            );
-          })}
-        </ul>
+        {item.details.length > 0 && (
+          <>
+            <div className="card-divider" />
+            <ul className="card-details">
+              {item.details.map(({ icon, text, highlight }) => {
+                const Icon = detailIcons[icon];
+                return (
+                  <li className={highlight ? 'highlight-detail' : ''} key={text}>
+                    <Icon size={15} strokeWidth={1.8} aria-hidden="true" />
+                    <span>{text}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        )}
       </div>
     </article>
   );
