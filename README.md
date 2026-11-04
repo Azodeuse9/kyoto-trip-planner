@@ -46,11 +46,33 @@ The Kyoto Trip Planner explores a simpler alternative to traditional travel sear
 - Opening hours: 09:00–18:00
 - Must-order: Tako tamago
 
-## Application Preview
+## Application States
 
-The screenshot below shows the happy-path experience with all three recommendation cards.
+### 01. Thinking State
 
-![Kyoto Trip Planner Happy Path](screenshots/kyoto-chat-happy-path.png)
+After the guest submits a trip request, the message input temporarily locks while an animated thinking indicator appears in the assistant reply bubble.
+
+![Thinking state after submitting a trip request](screenshots/01-thinking-state.png)
+
+### 02. Error State
+
+Typing the exact phrase `break my trip` deliberately triggers a friendly failure:
+
+> "Sorry, the planner lost its way."
+
+The **Try again** button retries the original request, which remains visible in the conversation.
+
+![Friendly error state with the Try again button](screenshots/02-error-state.png)
+
+### 03. Cards State
+
+After the guest selects **Try again**, the planner processes the original request and successfully displays three recommendations together:
+
+- Stay
+- Experience
+- Food
+
+![Successful response with Stay, Experience and Food recommendations](screenshots/03-cards-state.png)
 
 ## Technology Stack
 
