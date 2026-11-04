@@ -6,6 +6,7 @@ import { RecommendationCards } from '@/components/cards/RecommendationCards';
 import { ChatHeader } from '@/components/chat/ChatHeader';
 import { ChatInput } from '@/components/chat/ChatInput';
 import { ThinkingIndicator } from '@/components/chat/ThinkingIndicator';
+import { mockTripRequests } from '@/data/mockTripRequests';
 import { kyotoRecommendations } from '@/data/kyotoRecommendations';
 import './globals.css';
 
@@ -20,13 +21,9 @@ type ConversationTurn = {
   status: TurnStatus;
 };
 
-const initialMessage = 'Plan a weekend trip to Kyoto from April 12 to April 14.';
-
 export default function Home() {
   const [draft, setDraft] = useState('');
-  const [turns, setTurns] = useState<ConversationTurn[]>([
-    { id: 0, userMessage: initialMessage, status: 'success' },
-  ]);
+  const [turns, setTurns] = useState<ConversationTurn[]>([]);
   const [isThinking, setIsThinking] = useState(false);
   const nextTurnId = useRef(1);
   const responseTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -48,8 +45,8 @@ export default function Home() {
     }, 1100);
   }
 
-  function handleSubmit() {
-    const message = draft.trim();
+  function handleSubmit(request = draft) {
+    const message = request.trim();
     if (!message || isThinking) return;
 
     const turnId = nextTurnId.current++;
@@ -81,7 +78,24 @@ export default function Home() {
           <div className="assistant-avatar" aria-hidden="true">
             <Sparkles size={17} strokeWidth={1.8} />
           </div>
-          <p className="message-bubble assistant-bubble">{welcomeMessage}</p>
+          <div className="assistant-message-copy">
+            <p className="message-bubble assistant-bubble">{welcomeMessage}</p>
+            {turns.length === 0 && (
+              <div className="example-prompts" aria-label="Example trip requests">
+                {mockTripRequests.map((request) => (
+                  <button
+                    className="example-prompt"
+                    key={request}
+                    type="button"
+                    disabled={isThinking}
+                    onClick={() => handleSubmit(request)}
+                  >
+                    {request}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         {turns.map((turn) => {

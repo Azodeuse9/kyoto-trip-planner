@@ -111,6 +111,27 @@ npm run dev
 
 Open http://localhost:3000 in your browser.
 
+## Local Development
+
+From the project directory, run:
+
+```bash
+npm install
+npm run dev
+```
+
+Then open http://localhost:3000.
+
+The chat includes these clickable example trip requests:
+
+1. "Plan a weekend trip to Kyoto from April 12 to April 14."
+2. "I want a traditional stay in Gion, a cultural tea experience and local street food."
+3. "Help me plan a two-day Kyoto getaway with somewhere to stay, an activity and somewhere to eat."
+
+Each normal request returns the same workbook-backed mock response with Stay, Experience and Food recommendations. Enter `break my trip` to test the error message and **Try again** recovery flow.
+
+![Kyoto Trip Planner happy path](screenshots/03-cards-state.png)
+
 ## Project Structure
 
 ```text
