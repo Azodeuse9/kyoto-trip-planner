@@ -29,7 +29,6 @@ export default function Home() {
   ]);
   const [isThinking, setIsThinking] = useState(false);
   const nextTurnId = useRef(1);
-  const hasTriggeredFirstRequestFailure = useRef(false);
   const responseTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(
@@ -54,8 +53,7 @@ export default function Home() {
     if (!message || isThinking) return;
 
     const turnId = nextTurnId.current++;
-    const shouldFail = !hasTriggeredFirstRequestFailure.current;
-    hasTriggeredFirstRequestFailure.current = true;
+    const shouldFail = message.toLowerCase() === 'break my trip';
     setTurns((currentTurns) => [
       ...currentTurns,
       { id: turnId, userMessage: message, status: 'thinking' },

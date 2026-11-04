@@ -34,6 +34,7 @@ const detailIcons = {
 
 export function RecommendationCard({ item }: { item: RecommendationCardData }) {
   const [saved, setSaved] = useState(false);
+  const details = item.details.filter(({ text }) => hasWorkbookValue(text));
 
   return (
     <article
@@ -78,11 +79,11 @@ export function RecommendationCard({ item }: { item: RecommendationCardData }) {
           <span>{item.location}</span>
         </div>
 
-        {item.details.length > 0 && (
+        {details.length > 0 && (
           <>
             <div className="card-divider" />
             <ul className="card-details">
-              {item.details.map(({ icon, text, highlight }) => {
+              {details.map(({ icon, text, highlight }) => {
                 const Icon = detailIcons[icon];
                 return (
                   <li className={highlight ? 'highlight-detail' : ''} key={text}>

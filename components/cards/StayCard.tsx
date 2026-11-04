@@ -9,6 +9,9 @@ export function StayCard({ stay }: { stay: StayData }) {
   const stayDates = [formatWorkbookDate(stay.checkIn), formatWorkbookDate(stay.checkOut)]
     .filter(hasWorkbookValue)
     .join(" – ");
+  const highlight = hasWorkbookValue(stay.highlight)
+    ? stay.highlight
+    : "More details about this stay coming soon.";
 
   const item: RecommendationCardData = {
     category: "STAY",
@@ -21,9 +24,11 @@ export function StayCard({ stay }: { stay: StayData }) {
     source: stay.source,
     details: [
       ...(hasWorkbookValue(stayDates) ? [{ icon: "calendar" as const, text: stayDates }] : []),
-      ...(hasWorkbookValue(stay.highlight)
-        ? [{ icon: "sparkles" as const, text: stay.highlight, highlight: true }]
-        : []),
+      {
+        icon: "sparkles",
+        text: highlight,
+        highlight: hasWorkbookValue(stay.highlight),
+      },
     ],
   };
 

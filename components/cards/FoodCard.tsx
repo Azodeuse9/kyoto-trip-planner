@@ -6,7 +6,10 @@ import type { FoodData } from "@/types/trip";
 import { hasWorkbookValue } from "@/utils/formatWorkbookValue";
 
 export function FoodCard({ food }: { food: FoodData }) {
-  const mustOrder = hasWorkbookValue(food.mustOrder) ? `Must-order: ${food.mustOrder}` : undefined;
+  const hasMustOrder = hasWorkbookValue(food.mustOrder);
+  const mustOrder = hasMustOrder
+    ? `Must-order: ${food.mustOrder}`
+    : "Local food recommendation coming soon.";
 
   const item: RecommendationCardData = {
     category: "FOOD",
@@ -21,9 +24,7 @@ export function FoodCard({ food }: { food: FoodData }) {
       ...(hasWorkbookValue(food.openingHours)
         ? [{ icon: "clock" as const, text: food.openingHours }]
         : []),
-      ...(hasWorkbookValue(mustOrder)
-        ? [{ icon: "sparkles" as const, text: mustOrder, highlight: true }]
-        : []),
+      { icon: "sparkles", text: mustOrder, highlight: hasMustOrder },
     ],
   };
 

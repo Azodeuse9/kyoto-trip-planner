@@ -11,9 +11,13 @@ import {
 
 export function ExperienceCard({ experience }: { experience: ExperienceData }) {
   const date = formatWorkbookDate(experience.date);
-  const schedule = [formatWorkbookTime(experience.time), experience.duration]
+  const time = formatWorkbookTime(experience.time);
+  const duration = hasWorkbookValue(experience.duration) ? experience.duration : undefined;
+  const schedule = [time, duration]
     .filter(hasWorkbookValue)
     .join(" · ");
+  const hasIncompleteSchedule =
+    !hasWorkbookValue(date) || !hasWorkbookValue(time) || !hasWorkbookValue(duration);
 
   const item: RecommendationCardData = {
     category: "EXPERIENCE",
@@ -27,6 +31,9 @@ export function ExperienceCard({ experience }: { experience: ExperienceData }) {
     details: [
       ...(hasWorkbookValue(date) ? [{ icon: "calendar" as const, text: date }] : []),
       ...(hasWorkbookValue(schedule) ? [{ icon: "clock" as const, text: schedule }] : []),
+      ...(hasIncompleteSchedule
+        ? [{ icon: "sparkles" as const, text: "Experience details coming soon." }]
+        : []),
     ],
   };
 
