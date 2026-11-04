@@ -1,27 +1,77 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CheckCheck, Sparkles } from 'lucide-react';
 import { RecommendationCards } from '@/components/cards/RecommendationCards';
 import { ChatHeader } from '@/components/chat/ChatHeader';
 import { ChatInput } from '@/components/chat/ChatInput';
+import { ThinkingIndicator } from '@/components/chat/ThinkingIndicator';
 import { kyotoRecommendations } from '@/data/kyotoRecommendations';
 import './globals.css';
 
 const welcomeMessage =
   "Hi! Where would you like to explore next? Tell me about your trip and I'll help you discover a stay, an experience and somewhere great to eat.";
 
+type TurnStatus = 'thinking' | 'success' | 'error';
+
+type ConversationTurn = {
+  id: number;
+  userMessage: string;
+  status: TurnStatus;
+};
+
+const initialMessage = 'Plan a weekend trip to Kyoto from April 12 to April 14.';
+
 export default function Home() {
   const [draft, setDraft] = useState('');
-  const [sentMessage, setSentMessage] = useState(
-    'Plan a weekend trip to Kyoto from April 12 to April 14.',
+  const [turns, setTurns] = useState<ConversationTurn[]>([
+    { id: 0, userMessage: initialMessage, status: 'success' },
+  ]);
+  const [isThinking, setIsThinking] = useState(false);
+  const nextTurnId = useRef(1);
+  const hasTriggeredFirstRequestFailure = useRef(false);
+  const responseTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(
+    () => () => {
+      if (responseTimeout.current) clearTimeout(responseTimeout.current);
+    },
+    [],
   );
+
+  function resolveTurn(turnId: number, status: Exclude<TurnStatus, 'thinking'>) {
+    responseTimeout.current = setTimeout(() => {
+      setTurns((currentTurns) =>
+        currentTurns.map((turn) => (turn.id === turnId ? { ...turn, status } : turn)),
+      );
+      setIsThinking(false);
+      responseTimeout.current = null;
+    }, 1100);
+  }
 
   function handleSubmit() {
     const message = draft.trim();
-    if (!message) return;
-    setSentMessage(message);
+    if (!message || isThinking) return;
+
+    const turnId = nextTurnId.current++;
+    const shouldFail = !hasTriggeredFirstRequestFailure.current;
+    hasTriggeredFirstRequestFailure.current = true;
+    setTurns((currentTurns) => [
+      ...currentTurns,
+      { id: turnId, userMessage: message, status: 'thinking' },
+    ]);
     setDraft('');
+    setIsThinking(true);
+    resolveTurn(turnId, shouldFail ? 'error' : 'success');
+  }
+
+  function handleRetry(turnId: number) {
+    if (isThinking) return;
+    setTurns((currentTurns) =>
+      currentTurns.map((turn) => (turn.id === turnId ? { ...turn, status: 'thinking' } : turn)),
+    );
+    setIsThinking(true);
+    resolveTurn(turnId, 'success');
   }
 
   return (
@@ -36,31 +86,82 @@ export default function Home() {
           <p className="message-bubble assistant-bubble">{welcomeMessage}</p>
         </div>
 
-        <div className="message-row user-row">
-          <p className="message-bubble user-bubble">{sentMessage}</p>
-          <div className="message-meta">
-            <span>9:41 AM</span>
-            <CheckCheck size={16} aria-label="Message sent" />
-          </div>
-        </div>
+        {turns.map((turn) => {
+          const isLatestTurn = turn.id === turns[turns.length - 1]?.id;
 
-        <div className="results-row">
-          <div className="assistant-avatar results-avatar" aria-hidden="true">
-            <Sparkles size={17} strokeWidth={1.8} />
-          </div>
-          <div className="results-content">
-            <p className="message-bubble assistant-bubble results-intro">
-              Here are three recommendations for your Kyoto weekend.
-            </p>
-            <RecommendationCards recommendations={kyotoRecommendations} />
-          </div>
-        </div>
+          return (
+            <div className="conversation-turn" key={turn.id}>
+              <div className="message-row user-row">
+                <p className="message-bubble user-bubble">{turn.userMessage}</p>
+                <div className="message-meta">
+                  <span>9:41 AM</span>
+                  <CheckCheck size={16} aria-label="Message sent" />
+                </div>
+              </div>
+
+              <div className="results-row">
+                <div className="assistant-avatar results-avatar" aria-hidden="true">
+                  <Sparkles size={17} strokeWidth={1.8} />
+                </div>
+                <div className="results-content">
+                  {turn.status === 'thinking' && (
+                    <div
+                      className="message-bubble assistant-bubble thinking-bubble"
+                      aria-live="polite"
+                    >
+                      <ThinkingIndicator />
+                    </div>
+                  )}
+                  {turn.status === 'error' && (
+                    <div className="message-bubble assistant-bubble error-bubble" role="alert">
+                      <div className="error-message">
+                        <svg
+                          className="error-icon"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <circle cx="12" cy="12" r="9" />
+                          <path d="M12 8v4" />
+                          <path d="M12 16h.01" />
+                        </svg>
+                        <span>Sorry, the planner lost its way.</span>
+                      </div>
+                      <button
+                        className="retry-button"
+                        type="button"
+                        onClick={() => handleRetry(turn.id)}
+                        disabled={isThinking}
+                      >
+                        Try again
+                      </button>
+                    </div>
+                  )}
+                  {turn.status === 'success' && (
+                    <>
+                      <p className="message-bubble assistant-bubble results-intro">
+                        Here are three recommendations for your Kyoto weekend.
+                      </p>
+                      {isLatestTurn && (
+                        <RecommendationCards recommendations={kyotoRecommendations} />
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </section>
 
       <div className="composer-area">
         <ChatInput
           value={draft}
-          disabled={false}
+          disabled={isThinking}
           onChange={setDraft}
           onSubmit={handleSubmit}
         />

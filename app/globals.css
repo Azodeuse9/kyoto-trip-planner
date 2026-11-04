@@ -173,6 +173,10 @@ button {
   margin-bottom: 22px;
 }
 
+.conversation-turn + .conversation-turn {
+  margin-top: 20px;
+}
+
 .user-row {
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -215,6 +219,93 @@ button {
 .results-intro {
   display: table;
   margin-bottom: 16px;
+}
+
+.thinking-bubble {
+  display: inline-flex;
+  min-width: 76px;
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.thinking-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 18px;
+}
+
+.thinking-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #717171;
+  animation: thinking-pulse 1s ease-in-out infinite;
+}
+
+@keyframes thinking-pulse {
+  0%,
+  60%,
+  100% {
+    opacity: 0.45;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+.error-bubble {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.error-icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  color: var(--rose);
+}
+
+.retry-button {
+  min-height: 38px;
+  padding: 8px 15px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--rose);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 140ms ease, transform 140ms ease;
+}
+
+.retry-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #e91e4f;
+}
+
+.retry-button:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.retry-button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
 .recommendation-grid {
