@@ -91,6 +91,12 @@ These screenshots were captured on a physical Android phone, not a resized deskt
 
 ![Real Android phone retry success](public/screenshots/14-real-phone-retry-success.png)
 
+**Keyboard open**
+
+This physical-device capture shows the composer remaining visible while the Android keyboard is open. It does not by itself verify sending a message with the keyboard open, so the keyboard usability checklist item remains unchecked.
+
+![Real Android phone with keyboard open](public/screenshots/15-real-phone-keyboard.png)
+
 ## Project Overview
 
 The Kyoto Trip Planner explores a simpler alternative to traditional travel search filters. Guests can enter their trip requirements naturally and receive three recommendations together in one conversational response.
