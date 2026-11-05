@@ -8,6 +8,9 @@ import { ChatInput } from '@/components/chat/ChatInput';
 import { ThinkingIndicator } from '@/components/chat/ThinkingIndicator';
 import { mockTripRequests } from '@/data/mockTripRequests';
 import { kyotoRecommendations } from '@/data/kyotoRecommendations';
+import { mockBrokenResponse } from '@/data/mockBrokenResponse';
+import { isRecommendationSet } from '@/utils/validateRecommendationResponse';
+import type { RecommendationSet } from '@/types/trip';
 import './globals.css';
 
 const welcomeMessage =
@@ -19,6 +22,7 @@ type ConversationTurn = {
   id: number;
   userMessage: string;
   status: TurnStatus;
+  recommendations?: RecommendationSet;
 };
 
 export default function Home() {
@@ -35,10 +39,19 @@ export default function Home() {
     [],
   );
 
-  function resolveTurn(turnId: number, status: Exclude<TurnStatus, 'thinking'>) {
+  function resolveTurn(turnId: number, response: unknown) {
     responseTimeout.current = setTimeout(() => {
+      const isValidResponse = isRecommendationSet(response);
       setTurns((currentTurns) =>
-        currentTurns.map((turn) => (turn.id === turnId ? { ...turn, status } : turn)),
+        currentTurns.map((turn) =>
+          turn.id === turnId
+            ? {
+                ...turn,
+                status: isValidResponse ? 'success' : 'error',
+                recommendations: isValidResponse ? response : undefined,
+              }
+            : turn,
+        ),
       );
       setIsThinking(false);
       responseTimeout.current = null;
@@ -46,18 +59,17 @@ export default function Home() {
   }
 
   function handleSubmit(request = draft) {
-    const message = request.trim();
-    if (!message || isThinking) return;
+    if (!request.trim() || isThinking) return;
 
     const turnId = nextTurnId.current++;
-    const shouldFail = message.toLowerCase() === 'break my trip';
+    const shouldFail = request.trim().toLowerCase() === 'break my trip';
     setTurns((currentTurns) => [
       ...currentTurns,
-      { id: turnId, userMessage: message, status: 'thinking' },
+      { id: turnId, userMessage: request, status: 'thinking' },
     ]);
     setDraft('');
     setIsThinking(true);
-    resolveTurn(turnId, shouldFail ? 'error' : 'success');
+    resolveTurn(turnId, shouldFail ? mockBrokenResponse : kyotoRecommendations);
   }
 
   function handleRetry(turnId: number) {
@@ -66,7 +78,7 @@ export default function Home() {
       currentTurns.map((turn) => (turn.id === turnId ? { ...turn, status: 'thinking' } : turn)),
     );
     setIsThinking(true);
-    resolveTurn(turnId, 'success');
+    resolveTurn(turnId, kyotoRecommendations);
   }
 
   return (
@@ -141,7 +153,10 @@ export default function Home() {
                           <path d="M12 8v4" />
                           <path d="M12 16h.01" />
                         </svg>
-                        <span>Sorry, the planner lost its way.</span>
+                        <span>
+                          We couldn’t put your Kyoto plan together just now. Your request is still
+                          here — try again and we’ll rebuild your recommendations.
+                        </span>
                       </div>
                       <button
                         className="retry-button"
@@ -149,17 +164,17 @@ export default function Home() {
                         onClick={() => handleRetry(turn.id)}
                         disabled={isThinking}
                       >
-                        Try again
+                        Try Again
                       </button>
                     </div>
                   )}
-                  {turn.status === 'success' && (
+                  {turn.status === 'success' && turn.recommendations && (
                     <>
                       <p className="message-bubble assistant-bubble results-intro">
                         Here are three recommendations for your Kyoto weekend.
                       </p>
                       {isLatestTurn && (
-                        <RecommendationCards recommendations={kyotoRecommendations} />
+                        <RecommendationCards recommendations={turn.recommendations} />
                       )}
                     </>
                   )}

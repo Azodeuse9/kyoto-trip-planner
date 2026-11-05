@@ -1,6 +1,7 @@
 import { RecommendationCards } from "@/components/cards/RecommendationCards";
 import { ThinkingIndicator } from "@/components/chat/ThinkingIndicator";
 import type { ChatMessageModel } from "@/types/trip";
+import { isRecommendationSet } from "@/utils/validateRecommendationResponse";
 
 type ChatMessageProps = {
   message: ChatMessageModel;
@@ -8,6 +9,10 @@ type ChatMessageProps = {
 
 export function ChatMessage({ message }: ChatMessageProps) {
   const isUser = message.sender === "user";
+  const hasRecommendations = message.recommendations !== undefined;
+  const recommendations = isRecommendationSet(message.recommendations)
+    ? message.recommendations
+    : null;
 
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
@@ -34,9 +39,15 @@ export function ChatMessage({ message }: ChatMessageProps) {
               {message.text ? (
                 <p className={isUser ? "text-white" : "text-[#222222]"}>{message.text}</p>
               ) : null}
-              {message.recommendations ? (
+              {hasRecommendations && !recommendations ? (
+                <p className="text-[#222222]" role="alert">
+                  We couldn’t put your Kyoto plan together just now. Your request is still here —
+                  try again and we’ll rebuild your recommendations.
+                </p>
+              ) : null}
+              {recommendations ? (
                 <div className="mt-4 space-y-3">
-                  <RecommendationCards recommendations={message.recommendations} />
+                  <RecommendationCards recommendations={recommendations} />
                 </div>
               ) : null}
             </>
