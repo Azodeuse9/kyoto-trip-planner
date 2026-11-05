@@ -1,10 +1,10 @@
 # Kyoto Trip Planner
 
+**Public prototype:** https://kyoto-trip-planner-six.vercel.app/
+
 An Airbnb-inspired conversational trip planner that helps guests discover a stay, an experience, and food recommendations for a Kyoto weekend through a single chat request.
 
 ## Research Session Checklist
-
-**Public prototype:** [Open the Kyoto Trip Planner](https://kyoto-trip-planner-six.vercel.app/)
 
 **GitHub repository:** [Azodeuse9/kyoto-trip-planner](https://github.com/Azodeuse9/kyoto-trip-planner)
 
@@ -24,7 +24,7 @@ An Airbnb-inspired conversational trip planner that helps guests discover a stay
 
 **Team message — project-context draft**
 
-Hi research team — The Kyoto Trip Planner prototype is ready for moderated testing. Please send the public Vercel link to the session moderator before the sessions so they can prepare. The moderator should share it with each of the eight test guests at the start of their session. Use the README checklist to record each guest’s experience and review the observations with the team after all eight sessions. The prototype uses mock recommendations, not live availability or bookings.
+Hi research team — Please send the public Kyoto Trip Planner link to the session moderator before the sessions so they can prepare. At each session’s start, the moderator should share it with the guest. Ask guests to try “Plan a weekend trip to Kyoto for two.” and use “break my trip” to test error recovery. Record observations in the README checklist and review them with the team after all eight sessions. Recommendations are mock data, not live availability or bookings.
 
 This is a project-context draft, not wording copied from the unavailable “Moderated Session Prototype Requirements: Trip-Planner Chat” document.
 
@@ -77,7 +77,7 @@ Captured from fresh private browser contexts on the public Vercel deployment. Fu
 
 ## Real Android Device Testing
 
-These screenshots were captured on a physical Android phone, not a resized desktop viewport. The retry-success image shows the successful recommendation response; the thinking/loading screenshot is not used as retry-success evidence.
+These screenshots were captured on a physical Android phone, not a resized desktop viewport. The happy-path image shows all three recommendation cards, including the complete Food card above the fixed composer. The retry-success image shows the successful recommendation response; the thinking/loading screenshot is not used as retry-success evidence.
 
 **Happy path**
 
