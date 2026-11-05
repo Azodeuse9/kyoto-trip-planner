@@ -2,43 +2,21 @@
 
 An Airbnb-inspired conversational trip planner that helps guests discover a stay, an experience, and food recommendations for a Kyoto weekend through a single chat request.
 
-## Research Session Readiness
+## Research Session Checklist
 
-**Prototype:** [Open the public Kyoto Trip Planner](https://kyoto-trip-planner-aatifak2255-8273.vercel.app)
+**Public prototype:** [Open the Kyoto Trip Planner](https://kyoto-trip-planner-six.vercel.app/)
 
-**Repository:** [Azodeuse9/kyoto-trip-planner](https://github.com/Azodeuse9/kyoto-trip-planner)
+**GitHub repository:** [Azodeuse9/kyoto-trip-planner](https://github.com/Azodeuse9/kyoto-trip-planner)
 
-### Access and first request
-
-- [ ] Public prototype opens without login.
-- [ ] Guest can submit one natural-language Kyoto trip request.
-- [ ] Original request remains visible.
-- [ ] Composer locks while thinking.
-- [ ] Thinking indicator appears before cards.
-
-### Three-card response
-
-- [ ] One request returns Stay, Experience, and Food together.
-- [ ] Cards appear in this order: Stay → Experience → Food.
-- [ ] All three cards are visually distinct.
-- [ ] No blank or broken cards appear.
-
-### Failure and recovery
-
-- [ ] `break my trip` triggers the forced failure.
-- [ ] Original request remains visible.
-- [ ] Friendly inline error and Try Again button appear.
-- [ ] No cards are shown during failure.
-- [ ] Retry reuses the original turn without duplicating the message.
-- [ ] Thinking appears and all three cards return after retry.
-- [ ] Repeat failure and retry work.
-
-### Phone and laptop
-
-- [ ] Mobile cards stack vertically and remain readable.
-- [ ] Laptop layout displays all three cards clearly.
-- [ ] No horizontal overflow or clipped controls.
-- [ ] Composer and Try Again remain usable on both sizes.
+- [x] Three of three recommendation cards appear together in Stay → Experience → Food order.
+- [x] No blank chat moment: the thinking indicator appears before recommendations.
+- [x] Mock data is disclosed in the chat and documented below.
+- [x] Stay, Experience, and Food use three distinct card layouts.
+- [x] `break my trip` triggers the forced error on the live deployment without file edits.
+- [x] The inline error bubble shows Try Again, with no recommendation cards during failure.
+- [x] Retry reuses the original turn, shows thinking, and restores all three cards; repeated failure and recovery work.
+- [x] The public Vercel URL opens without login in a fresh private browser context.
+- [x] Laptop (1440 × 1000) and phone (390 × 844) layouts work without horizontal overflow or clipped cards; the composer remains usable.
 
 ### Guest observation log
 
@@ -55,19 +33,37 @@ Record observations during the researcher session; no guest results have been en
 | Guest 7 | |
 | Guest 8 | |
 
-### Desktop and mobile screenshots
+## Research Session Browser Evidence
 
-![Desktop happy path at 1440 × 1000](public/screenshots/06-desktop-happy-path.png)
+Captured from fresh private browser contexts on the public Vercel deployment. Full-page captures keep all recommendations visible on the phone.
 
-![Desktop error state at 1440 × 1000](public/screenshots/07-desktop-error-state.png)
+### Laptop — 1440 × 1000
 
-![Desktop retry success at 1440 × 1000](public/screenshots/08-desktop-retry-success.png)
+**Happy path**
 
-![Mobile happy path at 390 × 844](public/screenshots/09-mobile-happy-path.png)
+![Laptop happy path at 1440 × 1000](public/screenshots/06-laptop-happy-path.png)
 
-![Mobile error state at 390 × 844](public/screenshots/10-mobile-error-state.png)
+**Error state**
 
-![Mobile retry success at 390 × 844](public/screenshots/11-mobile-retry-success.png)
+![Laptop error state at 1440 × 1000](public/screenshots/07-laptop-error-state.png)
+
+**Retry success**
+
+![Laptop retry success at 1440 × 1000](public/screenshots/08-laptop-retry-success.png)
+
+### Phone — 390 × 844
+
+**Happy path**
+
+![Phone happy path at 390 × 844](public/screenshots/09-mobile-happy-path.png)
+
+**Error state**
+
+![Phone error state at 390 × 844](public/screenshots/10-mobile-error-state.png)
+
+**Retry success**
+
+![Phone retry success at 390 × 844](public/screenshots/11-mobile-retry-success.png)
 
 ## Project Overview
 
@@ -220,7 +216,7 @@ kyoto-trip-planner/
 
 ## Data Source
 
-The recommendation content is based on the Kyoto weekend workbook, using one mock response item from each worksheet: Stays, Experiences, and Food.
+Recommendations are workbook-backed mock data, using one sample response item from each worksheet: Stays, Experiences, and Food. They are illustrative and do not represent live availability or bookings.
 
 ## Project Status
 
