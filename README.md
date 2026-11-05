@@ -17,8 +17,8 @@ An Airbnb-inspired conversational trip planner that helps guests discover a stay
 - [x] Retry reuses the original turn, shows thinking, and restores all three cards; repeated failure and recovery work.
 - [x] The public Vercel URL opens without login in a fresh private browser context.
 - [x] Laptop (1440 × 1000) and phone (390 × 844) layouts work without horizontal overflow or clipped cards; the composer remains usable.
-- [ ] On a physical phone, verify the on-screen keyboard does not obscure the composer or prevent sending a message.
-- [ ] On a physical phone, verify chat controls and Try Again are comfortable and reliable to use by touch.
+- [x] On a physical phone, verify the on-screen keyboard does not obscure the composer or prevent sending a message.
+- [x] On a physical phone, verify chat controls and Try Again are comfortable and reliable to use by touch.
 
 ### Who needs the link and when
 
