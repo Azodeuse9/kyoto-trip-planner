@@ -20,7 +20,11 @@ An Airbnb-inspired conversational trip planner that helps guests discover a stay
 
 ### Who needs the link and when
 
-**Pending:** The original “Moderated Session Prototype Requirements: Trip-Planner Chat” source text is needed. The available Kyoto specification does not specify recipients or sharing timing, so no team message has been inferred.
+**Team message — project-context draft**
+
+Hi research team — The Kyoto Trip Planner prototype is ready for moderated testing. Please send the public Vercel link to the session moderator before the sessions so they can prepare. The moderator should share it with each of the eight test guests at the start of their session. Use the README checklist to record each guest’s experience and review the observations with the team after all eight sessions. The prototype uses mock recommendations, not live availability or bookings.
+
+This is a project-context draft, not wording copied from the unavailable “Moderated Session Prototype Requirements: Trip-Planner Chat” document.
 
 ### Guest observation log
 
