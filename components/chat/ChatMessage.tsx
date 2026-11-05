@@ -40,7 +40,10 @@ export function ChatMessage({ message }: ChatMessageProps) {
                 <p className={isUser ? "text-white" : "text-[#222222]"}>{message.text}</p>
               ) : null}
               {hasRecommendations && !recommendations ? (
-                <p className="text-[#222222]" role="alert">
+                <p
+                  className="flex items-start gap-[9px] text-[15px] leading-[1.55] text-[#222222]"
+                  role="alert"
+                >
                   We couldn’t put your Kyoto plan together just now. Your request is still here —
                   try again and we’ll rebuild your recommendations.
                 </p>

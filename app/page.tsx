@@ -137,10 +137,13 @@ export default function Home() {
                     </div>
                   )}
                   {turn.status === 'error' && (
-                    <div className="message-bubble assistant-bubble error-bubble" role="alert">
-                      <div className="error-message">
+                    <div
+                      className="message-bubble assistant-bubble error-bubble flex w-fit flex-col items-start gap-3"
+                      role="alert"
+                    >
+                      <div className="flex items-start gap-[9px]">
                         <svg
-                          className="error-icon"
+                          className="mt-0.5 h-5 w-5 shrink-0 text-[#ff385c]"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
@@ -159,7 +162,7 @@ export default function Home() {
                         </span>
                       </div>
                       <button
-                        className="retry-button"
+                        className="min-h-[38px] cursor-pointer rounded-full border-0 bg-[#ff385c] px-[15px] py-2 text-[13px]! font-semibold! text-white transition duration-150 ease-in-out hover:-translate-y-px hover:bg-[#e91e4f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#222222] disabled:cursor-default disabled:opacity-70"
                         type="button"
                         onClick={() => handleRetry(turn.id)}
                         disabled={isThinking}
