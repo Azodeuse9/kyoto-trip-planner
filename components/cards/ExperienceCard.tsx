@@ -1,7 +1,6 @@
-import {
-  RecommendationCard,
-  type RecommendationCardData,
-} from "@/components/cards/RecommendationCard";
+import Image from "next/image";
+import { CalendarDays, Clock3, MapPin } from "lucide-react";
+import { CardSaveButton } from "@/components/cards/CardSaveButton";
 import type { ExperienceData } from "@/types/trip";
 import {
   formatWorkbookDate,
@@ -16,26 +15,52 @@ export function ExperienceCard({ experience }: { experience: ExperienceData }) {
   const schedule = [time, duration]
     .filter(hasWorkbookValue)
     .join(" · ");
-  const hasIncompleteSchedule =
-    !hasWorkbookValue(date) || !hasWorkbookValue(time) || !hasWorkbookValue(duration);
 
-  const item: RecommendationCardData = {
-    category: "EXPERIENCE",
-    title: experience.title,
-    price: experience.price,
-    priceSuffix: experience.priceSuffix,
-    location: experience.location,
-    image: experience.image,
-    imageAlt: "Matcha tea in a ceramic bowl beside a bamboo whisk",
-    source: experience.source,
-    details: [
-      ...(hasWorkbookValue(date) ? [{ icon: "calendar" as const, text: date }] : []),
-      ...(hasWorkbookValue(schedule) ? [{ icon: "clock" as const, text: schedule }] : []),
-      ...(hasIncompleteSchedule
-        ? [{ icon: "sparkles" as const, text: "Experience details coming soon." }]
-        : []),
-    ],
-  };
-
-  return <RecommendationCard item={item} />;
+  return (
+    <article
+      className="recommendation-card experience-card"
+      data-source-worksheet={experience.source.worksheet}
+      data-source-row={experience.source.row}
+    >
+      <div className="experience-photo">
+        <Image
+          src={experience.image}
+          alt="Matcha tea in a ceramic bowl beside a bamboo whisk"
+          fill
+          sizes="(max-width: 620px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+        <span className="experience-photo-label">A Kyoto moment</span>
+        <CardSaveButton title={experience.title} />
+      </div>
+      <div className="experience-content">
+        <span className="experience-eyebrow">THE EXPERIENCE · UJI</span>
+        <h3>{experience.title}</h3>
+        <div className="experience-location">
+          <MapPin size={15} strokeWidth={1.8} aria-hidden="true" />
+          <span>{experience.location}</span>
+        </div>
+        <div className="experience-schedule">
+          <div>
+            <CalendarDays size={16} aria-hidden="true" />
+            <span>{hasWorkbookValue(date) ? date : "Date to be confirmed"}</span>
+          </div>
+          <div>
+            <Clock3 size={16} aria-hidden="true" />
+            <span>{hasWorkbookValue(schedule) ? schedule : "Time to be confirmed"}</span>
+          </div>
+        </div>
+        <div className="experience-price">
+          <span>Make time for something memorable</span>
+          {hasWorkbookValue(experience.price) && (
+            <strong>
+              {experience.price}
+              {hasWorkbookValue(experience.priceSuffix) && (
+                <small> {experience.priceSuffix}</small>
+              )}
+            </strong>
+          )}
+        </div>
+      </div>
+    </article>
+  );
 }
