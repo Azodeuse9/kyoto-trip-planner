@@ -177,7 +177,7 @@ export default function Home() {
                         Here are three recommendations for your Kyoto weekend.
                       </p>
                       <p className="mock-disclosure">
-                        Prototype note: these are mock recommendations based on the Kyoto trip-planner workbook.
+                        Mock data: recommendations are sample entries from the Kyoto trip-planner workbook.
                       </p>
                       {isLatestTurn && (
                         <RecommendationCards recommendations={turn.recommendations} />

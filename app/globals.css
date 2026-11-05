@@ -267,8 +267,8 @@ button {
 
 .mock-disclosure {
   margin: -7px 0 12px;
-  color: var(--muted);
-  font-size: 11px;
+  color: #555555;
+  font-size: 12px;
   line-height: 1.4;
 }
 
@@ -965,7 +965,7 @@ button {
 
   .mock-disclosure {
     margin: -5px 0 10px 36px;
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .assistant-avatar {
