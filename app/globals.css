@@ -996,6 +996,10 @@ button {
     width: 100%;
   }
 
+  .thinking-bubble {
+    margin-left: 36px;
+  }
+
   .results-intro {
     margin-left: 36px;
   }
