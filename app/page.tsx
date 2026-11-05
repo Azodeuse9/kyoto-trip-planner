@@ -138,7 +138,7 @@ export default function Home() {
                   )}
                   {turn.status === 'error' && (
                     <div
-                      className="message-bubble assistant-bubble error-bubble flex w-fit flex-col items-start gap-3"
+                      className="message-bubble assistant-bubble error-bubble"
                       role="alert"
                     >
                       <div className="flex items-start gap-[9px]">
@@ -162,7 +162,7 @@ export default function Home() {
                         </span>
                       </div>
                       <button
-                        className="min-h-[38px] cursor-pointer rounded-full border-0 bg-[#ff385c] px-[15px] py-2 text-[13px]! font-semibold! text-white transition duration-150 ease-in-out hover:-translate-y-px hover:bg-[#e91e4f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#222222] disabled:cursor-default disabled:opacity-70"
+                        className="retry-button"
                         type="button"
                         onClick={() => handleRetry(turn.id)}
                         disabled={isThinking}

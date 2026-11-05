@@ -27,7 +27,7 @@ export function ExperienceCard({ experience }: { experience: ExperienceData }) {
           src={experience.image}
           alt="Matcha tea in a ceramic bowl beside a bamboo whisk"
           fill
-          sizes="(max-width: 620px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 620px) 34vw, (max-width: 1024px) 50vw, 33vw"
         />
         <span className="experience-photo-label">A Kyoto moment</span>
         <CardSaveButton title={experience.title} />

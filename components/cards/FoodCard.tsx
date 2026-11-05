@@ -16,7 +16,7 @@ export function FoodCard({ food }: { food: FoodData }) {
           src={food.image}
           alt="Fresh takoyaki at a Kyoto street food stall"
           fill
-          sizes="(max-width: 620px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 620px) 34vw, (max-width: 1024px) 50vw, 33vw"
         />
         <span className="food-photo-label">A taste of Kyoto</span>
         <CardSaveButton title={food.title} />

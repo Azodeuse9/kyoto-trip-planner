@@ -19,7 +19,7 @@ export function StayCard({ stay }: { stay: StayData }) {
           src={stay.image}
           alt={stay.accessibility.imageAltText}
           fill
-          sizes="(max-width: 620px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 620px) 34vw, (max-width: 1024px) 50vw, 33vw"
           priority
         />
         <span className="stay-photo-label">A place to stay</span>
