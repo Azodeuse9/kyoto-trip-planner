@@ -265,6 +265,13 @@ button {
   margin-bottom: 16px;
 }
 
+.mock-disclosure {
+  margin: -7px 0 12px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
 .thinking-bubble {
   display: inline-flex;
   min-width: 76px;
@@ -954,6 +961,11 @@ button {
 
   .results-intro {
     margin-left: 36px;
+  }
+
+  .mock-disclosure {
+    margin: -5px 0 10px 36px;
+    font-size: 10px;
   }
 
   .assistant-avatar {

@@ -176,6 +176,9 @@ export default function Home() {
                       <p className="message-bubble assistant-bubble results-intro">
                         Here are three recommendations for your Kyoto weekend.
                       </p>
+                      <p className="mock-disclosure">
+                        Prototype note: these are mock recommendations based on the Kyoto trip-planner workbook.
+                      </p>
                       {isLatestTurn && (
                         <RecommendationCards recommendations={turn.recommendations} />
                       )}
