@@ -2,6 +2,73 @@
 
 An Airbnb-inspired conversational trip planner that helps guests discover a stay, an experience, and food recommendations for a Kyoto weekend through a single chat request.
 
+## Research Session Readiness
+
+**Prototype:** [Open the public Kyoto Trip Planner](https://kyoto-trip-planner-aatifak2255-8273.vercel.app)
+
+**Repository:** [Azodeuse9/kyoto-trip-planner](https://github.com/Azodeuse9/kyoto-trip-planner)
+
+### Access and first request
+
+- [ ] Public prototype opens without login.
+- [ ] Guest can submit one natural-language Kyoto trip request.
+- [ ] Original request remains visible.
+- [ ] Composer locks while thinking.
+- [ ] Thinking indicator appears before cards.
+
+### Three-card response
+
+- [ ] One request returns Stay, Experience, and Food together.
+- [ ] Cards appear in this order: Stay → Experience → Food.
+- [ ] All three cards are visually distinct.
+- [ ] No blank or broken cards appear.
+
+### Failure and recovery
+
+- [ ] `break my trip` triggers the forced failure.
+- [ ] Original request remains visible.
+- [ ] Friendly inline error and Try Again button appear.
+- [ ] No cards are shown during failure.
+- [ ] Retry reuses the original turn without duplicating the message.
+- [ ] Thinking appears and all three cards return after retry.
+- [ ] Repeat failure and retry work.
+
+### Phone and laptop
+
+- [ ] Mobile cards stack vertically and remain readable.
+- [ ] Laptop layout displays all three cards clearly.
+- [ ] No horizontal overflow or clipped controls.
+- [ ] Composer and Try Again remain usable on both sizes.
+
+### Guest observation log
+
+Record observations during the researcher session; no guest results have been entered yet.
+
+| Guest | Observations / results |
+|---|---|
+| Guest 1 | |
+| Guest 2 | |
+| Guest 3 | |
+| Guest 4 | |
+| Guest 5 | |
+| Guest 6 | |
+| Guest 7 | |
+| Guest 8 | |
+
+### Desktop and mobile screenshots
+
+![Desktop happy path at 1440 × 1000](public/screenshots/06-desktop-happy-path.png)
+
+![Desktop error state at 1440 × 1000](public/screenshots/07-desktop-error-state.png)
+
+![Desktop retry success at 1440 × 1000](public/screenshots/08-desktop-retry-success.png)
+
+![Mobile happy path at 390 × 844](public/screenshots/09-mobile-happy-path.png)
+
+![Mobile error state at 390 × 844](public/screenshots/10-mobile-error-state.png)
+
+![Mobile retry success at 390 × 844](public/screenshots/11-mobile-retry-success.png)
+
 ## Project Overview
 
 The Kyoto Trip Planner explores a simpler alternative to traditional travel search filters. Guests can enter their trip requirements naturally and receive three recommendations together in one conversational response.
