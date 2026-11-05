@@ -18,6 +18,10 @@ An Airbnb-inspired conversational trip planner that helps guests discover a stay
 - [x] The public Vercel URL opens without login in a fresh private browser context.
 - [x] Laptop (1440 × 1000) and phone (390 × 844) layouts work without horizontal overflow or clipped cards; the composer remains usable.
 
+### Who needs the link and when
+
+**Pending:** The original “Moderated Session Prototype Requirements: Trip-Planner Chat” source text is needed. The available Kyoto specification does not specify recipients or sharing timing, so no team message has been inferred.
+
 ### Guest observation log
 
 Record observations during the researcher session; no guest results have been entered yet.
