@@ -33,8 +33,20 @@ export function ExperienceCard({ experience }: { experience: ExperienceData }) {
         <CardSaveButton title={experience.title} />
       </div>
       <div className="experience-content">
-        <span className="experience-eyebrow">THE EXPERIENCE · UJI</span>
-        <h3>{experience.title}</h3>
+        <div className="experience-heading">
+          <div className="experience-title">
+            <span className="card-type experience">EXPERIENCE</span>
+            <h3>{experience.title}</h3>
+          </div>
+          {hasWorkbookValue(experience.price) && (
+            <div className="card-price">
+              <strong>{experience.price}</strong>
+              {hasWorkbookValue(experience.priceSuffix) && (
+                <span>{experience.priceSuffix}</span>
+              )}
+            </div>
+          )}
+        </div>
         <div className="experience-location">
           <MapPin size={15} strokeWidth={1.8} aria-hidden="true" />
           <span>{experience.location}</span>
@@ -49,17 +61,9 @@ export function ExperienceCard({ experience }: { experience: ExperienceData }) {
             <span>{hasWorkbookValue(schedule) ? schedule : "Time to be confirmed"}</span>
           </div>
         </div>
-        <div className="experience-price">
-          <span>Make time for something memorable</span>
-          {hasWorkbookValue(experience.price) && (
-            <strong>
-              {experience.price}
-              {hasWorkbookValue(experience.priceSuffix) && (
-                <small> {experience.priceSuffix}</small>
-              )}
-            </strong>
-          )}
-        </div>
+        <button className="card-show-link" type="button">
+          Show <span aria-hidden="true">→</span>
+        </button>
       </div>
     </article>
   );

@@ -60,6 +60,9 @@ export function StayCard({ stay }: { stay: StayData }) {
               : "More details about this stay coming soon."}
           </span>
         </p>
+        <button className="card-show-link" type="button">
+          Show <span aria-hidden="true">→</span>
+        </button>
       </div>
     </article>
   );

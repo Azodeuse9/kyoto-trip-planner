@@ -28,7 +28,9 @@ export function FoodCard({ food }: { food: FoodData }) {
             <h3>{food.title}</h3>
           </div>
           {hasWorkbookValue(food.priceRange) && (
-            <span className="food-price">{food.priceRange}</span>
+            <div className="card-price">
+              <strong>{food.priceRange}</strong>
+            </div>
           )}
         </div>
         <div className="food-neighborhood">
@@ -53,6 +55,9 @@ export function FoodCard({ food }: { food: FoodData }) {
           <span>DON&apos;T MISS</span>
           <strong>{hasWorkbookValue(food.mustOrder) ? food.mustOrder : "Local pick coming soon"}</strong>
         </div>
+        <button className="card-show-link" type="button">
+          Show <span aria-hidden="true">→</span>
+        </button>
       </div>
     </article>
   );

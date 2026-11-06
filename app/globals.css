@@ -359,20 +359,26 @@ button {
 
 .recommendation-card {
   display: flex;
+  height: 360px;
   min-width: 0;
-  min-height: 396px;
   flex-direction: column;
   overflow: hidden;
   border: 1px solid #e8e8e8;
-  border-radius: 18px;
+  border-radius: 16px;
   background: #ffffff;
-  box-shadow: 0 2px 9px rgb(34 34 34 / 5%);
+  box-shadow: 0 3px 12px rgb(34 34 34 / 6%);
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgb(34 34 34 / 9%);
 }
 
 .card-image-wrap {
   position: relative;
-  height: 178px;
-  flex: 0 0 178px;
+  height: 150px;
+  flex: 0 0 150px;
   overflow: hidden;
   background: #f4f4f4;
 }
@@ -525,7 +531,8 @@ button {
 .experience-photo,
 .food-photo {
   position: relative;
-  flex: 0 0 auto;
+  height: 150px;
+  flex: 0 0 150px;
   overflow: hidden;
   background: #f4f4f4;
 }
@@ -534,10 +541,6 @@ button {
 .experience-photo img,
 .food-photo img {
   object-fit: cover;
-}
-
-.stay-photo {
-  height: 154px;
 }
 
 .stay-photo-label,
@@ -564,17 +567,15 @@ button {
 .stay-content,
 .experience-content,
 .food-content {
+  display: flex;
   min-width: 0;
   flex: 1;
-}
-
-.stay-content {
-  display: flex;
   flex-direction: column;
-  padding: 15px 17px 16px;
+  padding: 12px 14px 11px;
 }
 
 .stay-heading,
+.experience-heading,
 .food-heading {
   display: flex;
   align-items: flex-start;
@@ -583,6 +584,7 @@ button {
 }
 
 .stay-heading > div:first-child,
+.experience-title,
 .food-heading > div:first-child {
   min-width: 0;
 }
@@ -590,27 +592,34 @@ button {
 .stay-heading h3,
 .experience-content h3,
 .food-heading h3 {
-  margin: 8px 0 5px;
-  font-size: 17px;
-  font-weight: 600;
+  margin: 5px 0 3px;
+  font-size: 16px;
+  font-weight: 700;
   letter-spacing: -0.3px;
   line-height: 1.28;
 }
 
-.stay-heading .card-type {
+.stay-heading .card-type,
+.experience-heading .card-type,
+.food-heading .card-type {
   max-width: 100%;
 }
 
-.stay-heading .card-price {
-  padding-top: 5px;
+.stay-heading .card-price,
+.experience-heading .card-price {
+  padding-top: 3px;
+}
+
+.experience-heading .card-price {
+  flex: 0 0 auto;
 }
 
 .stay-reservation {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
-  margin-top: 15px;
-  padding: 11px 0;
+  margin-top: 8px;
+  padding: 7px 0;
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #eeeeee;
 }
@@ -619,11 +628,11 @@ button {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  gap: 5px;
+  gap: 3px;
 }
 
 .stay-reservation div + div {
-  padding-left: 11px;
+  padding-left: 8px;
   border-left: 1px solid #eeeeee;
 }
 
@@ -645,8 +654,8 @@ button {
 .stay-highlight {
   display: flex;
   align-items: flex-start;
-  gap: 7px;
-  margin: 12px 0 0;
+  gap: 6px;
+  margin: 7px 0 0;
   color: #484848;
   font-size: 11px;
   line-height: 1.4;
@@ -655,43 +664,6 @@ button {
 .stay-highlight svg {
   flex: 0 0 auto;
   color: var(--rose);
-}
-
-.experience-photo {
-  height: 174px;
-}
-
-.experience-photo::after {
-  position: absolute;
-  inset: 45% 0 0;
-  background: linear-gradient(transparent, rgb(0 0 0 / 28%));
-  content: "";
-}
-
-.experience-photo-label {
-  bottom: 13px;
-  left: 15px;
-}
-
-.experience-content {
-  display: flex;
-  flex-direction: column;
-  padding: 16px 18px 17px;
-}
-
-.experience-eyebrow {
-  color: #39735b;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.experience-content h3 {
-  margin-top: 8px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: -0.3px;
 }
 
 .experience-location {
@@ -703,15 +675,15 @@ button {
 }
 
 .experience-location svg {
-  color: var(--rose);
+  color: #39735b;
 }
 
 .experience-schedule {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 14px;
-  margin-top: 16px;
-  padding: 12px 0;
+  gap: 6px 10px;
+  margin-top: 8px;
+  padding: 8px 0;
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #eeeeee;
 }
@@ -729,63 +701,8 @@ button {
   color: #39735b;
 }
 
-.experience-price {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: auto;
-  padding-top: 13px;
-  color: var(--muted);
-  font-size: 10px;
-}
-
-.experience-price strong {
-  flex: 0 0 auto;
-  color: var(--ink);
-  font-size: 14px;
-}
-
-.experience-price small {
-  font-size: 10px;
-  font-weight: 500;
-}
-
-.food-photo {
-  height: 174px;
-}
-
-.food-photo-label {
-  bottom: 12px;
-}
-
-.food-content {
-  display: flex;
-  flex-direction: column;
-  padding: 14px 17px 16px;
-}
-
-.food-heading .card-type {
-  background: #fff1cf;
-  color: #76520a;
-}
-
 .food-heading h3 {
-  margin-top: 8px;
-}
-
-.food-price {
-  display: grid;
-  width: 35px;
-  height: 35px;
-  flex: 0 0 35px;
-  place-items: center;
-  margin-top: 2px;
-  border-radius: 50%;
-  background: #fff1cf;
-  color: #76520a;
-  font-size: 15px;
-  font-weight: 700;
+  margin-top: 5px;
 }
 
 .food-neighborhood {
@@ -797,14 +714,14 @@ button {
 }
 
 .food-neighborhood svg {
-  color: var(--rose);
+  color: #9a6b0a;
 }
 
 .food-discovery-details {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px 12px;
-  margin-top: 12px;
+  gap: 6px 10px;
+  margin-top: 8px;
 }
 
 .food-discovery-details span {
@@ -824,10 +741,34 @@ button {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin-top: auto;
-  padding: 9px 11px;
-  border-radius: 10px;
+  margin-top: 8px;
+  padding: 7px 9px;
+  border-radius: 8px;
   background: #fff8e9;
+}
+
+.card-show-link {
+  display: inline-flex;
+  min-height: 27px;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+  margin-top: auto;
+  padding: 6px 9px;
+  border: 0;
+  border-radius: 6px;
+  background: #f7f7f7;
+  color: #a92542;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: default;
+}
+
+.card-show-link:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid #222222;
+  outline-offset: 3px;
 }
 
 .food-must-order > span {
@@ -1057,18 +998,14 @@ button {
 
   .recommendation-card {
     display: grid;
+    height: auto;
     grid-template-columns: minmax(104px, 34%) minmax(0, 1fr);
     min-height: 0;
     border-radius: 14px;
   }
 
   .stay-photo,
-  .experience-photo {
-    height: 100%;
-    min-height: 176px;
-    flex-basis: auto;
-  }
-
+  .experience-photo,
   .food-photo {
     height: 100%;
     min-height: 176px;
@@ -1095,6 +1032,7 @@ button {
   }
 
   .stay-heading,
+  .experience-heading,
   .food-heading {
     gap: 5px;
   }
@@ -1162,11 +1100,6 @@ button {
     line-height: 1.2;
   }
 
-  .experience-eyebrow {
-    font-size: 8px;
-    letter-spacing: 0.65px;
-  }
-
   .experience-location,
   .food-neighborhood {
     gap: 4px;
@@ -1190,30 +1123,14 @@ button {
     height: 12px;
   }
 
-  .experience-price {
-    flex-wrap: wrap;
-    gap: 4px;
-    padding-top: 7px;
-    font-size: 8px;
-  }
-
-  .experience-price strong {
-    font-size: 12px;
-  }
-
-  .experience-price small {
-    font-size: 8px;
+  .card-show-link {
+    min-height: 25px;
+    padding: 5px 6px;
+    font-size: 10px;
   }
 
   .food-content {
     gap: 0;
-  }
-
-  .food-price {
-    width: 27px;
-    height: 27px;
-    flex-basis: 27px;
-    font-size: 12px;
   }
 
   .food-discovery-details {

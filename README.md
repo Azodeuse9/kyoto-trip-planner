@@ -11,7 +11,9 @@ An Airbnb-inspired conversational trip planner that helps guests discover a stay
 - [x] Three of three recommendation cards appear together in Stay → Experience → Food order.
 - [x] No blank chat moment: the thinking indicator appears before recommendations.
 - [x] Mock data is disclosed in the chat and documented below.
-- [x] Stay, Experience, and Food use three distinct card layouts.
+- [x] Stay, Experience, and Food share compact desktop card dimensions, image treatment, typography, and aligned Show buttons while keeping category-specific details.
+- [x] Stay, Experience, and Food use subtle rose, sage, and amber category tags.
+- [x] The **Show →** action is a consistent, non-functional button with no booking or navigation behavior.
 - [x] `break my trip` triggers the forced error on the live deployment without file edits.
 - [x] The inline error bubble shows Try Again, with no recommendation cards during failure.
 - [x] Retry reuses the original turn, shows thinking, and restores all three cards; repeated failure and recovery work.
@@ -48,6 +50,10 @@ Record observations during the researcher session; no guest results have been en
 Captured from fresh private browser contexts on the public Vercel deployment. Full-page captures keep all recommendations visible on the phone.
 
 ### Laptop — 1440 × 1000
+
+**Compact recommendation cards**
+
+![Compact Stay, Experience, and Food recommendation cards](public/screenshots/16-desktop-recommendations.png)
 
 **Happy path**
 
@@ -114,6 +120,10 @@ The Kyoto Trip Planner explores a simpler alternative to traditional travel sear
 - Validated forced-failure and retry flow
 
 ## Recommendation Cards
+
+The desktop cards share a compact frame, image aspect ratio, clear typography, balanced padding, and bottom-aligned **Show →** button. Their details remain specific to each recommendation: stay dates and highlight, experience schedule and duration, and food hours and must-order item. Category tags use muted rose, sage, and amber. The existing compact, stacked mobile card layout is preserved.
+
+**Show →** is a visual button only; it does not navigate or trigger a booking. Recommendation content uses the existing mock data.
 
 ### 1. Stay
 
