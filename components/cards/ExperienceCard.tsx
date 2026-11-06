@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CalendarDays, Clock3, MapPin } from "lucide-react";
+import { CalendarDays, Clock3, MapPin, Sparkles } from "lucide-react";
 import { CardSaveButton } from "@/components/cards/CardSaveButton";
 import type { ExperienceData } from "@/types/trip";
 import {
@@ -61,6 +61,12 @@ export function ExperienceCard({ experience }: { experience: ExperienceData }) {
             <span>{hasWorkbookValue(schedule) ? schedule : "Time to be confirmed"}</span>
           </div>
         </div>
+        {hasWorkbookValue(experience.highlight) && (
+          <p className="experience-highlight">
+            <Sparkles size={15} aria-hidden="true" />
+            <span>{experience.highlight}</span>
+          </p>
+        )}
         <button className="card-show-link" type="button">
           Show <span aria-hidden="true">→</span>
         </button>

@@ -53,7 +53,7 @@ function isExperienceData(value: unknown): value is ExperienceData {
 
   return (
     hasRequiredStrings(value, ["title", "location", "price", "image"]) &&
-    hasOptionalStrings(value, ["date", "time", "priceSuffix", "duration"]) &&
+    hasOptionalStrings(value, ["date", "time", "priceSuffix", "duration", "highlight"]) &&
     isWorkbookSource(value.source)
   );
 }

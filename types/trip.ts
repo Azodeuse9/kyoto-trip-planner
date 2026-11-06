@@ -26,6 +26,7 @@ export type ExperienceData = {
   price: string;
   priceSuffix?: string;
   duration?: string;
+  highlight?: string;
   image: string;
   source: WorkbookSource;
 };

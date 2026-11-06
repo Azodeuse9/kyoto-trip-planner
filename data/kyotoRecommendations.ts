@@ -23,6 +23,7 @@ export const kyotoRecommendations: RecommendationSet = {
     price: "$48",
     priceSuffix: "USD",
     duration: "90 min",
+    highlight: "Experience Uji’s matcha tradition",
     image: "/images/matcha-experience.jpg",
     source: { worksheet: "Experiences", row: 2 },
   },

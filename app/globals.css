@@ -661,7 +661,18 @@ button {
   line-height: 1.4;
 }
 
-.stay-highlight svg {
+.experience-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 7px 0 0;
+  color: #484848;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.stay-highlight svg,
+.experience-highlight svg {
   flex: 0 0 auto;
   color: var(--rose);
 }
@@ -1082,13 +1093,15 @@ button {
     font-size: 9px;
   }
 
-  .stay-highlight {
+  .stay-highlight,
+  .experience-highlight {
     gap: 5px;
     margin-top: 7px;
     font-size: 9px;
   }
 
   .stay-highlight svg,
+  .experience-highlight svg,
   .experience-location svg,
   .food-neighborhood svg {
     width: 12px;
