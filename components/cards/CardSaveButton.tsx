@@ -14,7 +14,11 @@ export function CardSaveButton({ title }: { title: string }) {
       aria-pressed={saved}
       onClick={() => setSaved((isSaved) => !isSaved)}
     >
-      <Heart size={18} strokeWidth={2} fill={saved ? "currentColor" : "white"} />
+      <Heart
+        size={18}
+        strokeWidth={1.8}
+        fill={saved ? "currentColor" : "none"}
+      />
     </button>
   );
 }

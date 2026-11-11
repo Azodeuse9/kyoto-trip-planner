@@ -1,8 +1,13 @@
 import Image from "next/image";
-import { MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, Calendar, Luggage, MapPin } from "lucide-react";
 import { CardSaveButton } from "@/components/cards/CardSaveButton";
 import type { StayData } from "@/types/trip";
 import { formatWorkbookDate, hasWorkbookValue } from "@/utils/formatWorkbookValue";
+
+function cleanHighlight(text?: string) {
+  if (!text) return "Private tatami garden";
+  return text.replace(/^Don'?t\s+miss:?\s*/i, "");
+}
 
 export function StayCard({ stay }: { stay: StayData }) {
   const checkIn = formatWorkbookDate(stay.checkIn);
@@ -19,7 +24,7 @@ export function StayCard({ stay }: { stay: StayData }) {
           src={stay.image}
           alt={stay.accessibility.imageAltText}
           fill
-          sizes="(max-width: 620px) 34vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 620px) 100vw, (max-width: 1024px) 50vw, 33vw"
           priority
         />
         <span className="stay-photo-label">A place to stay</span>
@@ -27,10 +32,7 @@ export function StayCard({ stay }: { stay: StayData }) {
       </div>
       <div className="stay-content">
         <div className="stay-heading">
-          <div>
-            <span className="card-type stay">STAY</span>
-            <h3>{stay.title}</h3>
-          </div>
+          <span className="card-type stay">STAY</span>
           {hasWorkbookValue(stay.price) && (
             <div className="card-price">
               <strong>{stay.price}</strong>
@@ -38,30 +40,39 @@ export function StayCard({ stay }: { stay: StayData }) {
             </div>
           )}
         </div>
-        <div className="card-location">
-          <MapPin size={15} strokeWidth={1.8} aria-hidden="true" />
-          <span>{stay.location}</span>
-        </div>
-        <div className="stay-reservation" aria-label="Reservation dates">
-          <div>
-            <span>CHECK-IN</span>
-            <strong>{hasWorkbookValue(checkIn) ? checkIn : "Date to be confirmed"}</strong>
-          </div>
-          <div>
-            <span>CHECK-OUT</span>
-            <strong>{hasWorkbookValue(checkOut) ? checkOut : "Date to be confirmed"}</strong>
+
+        <div className="card-title-block">
+          <h3>{stay.title}</h3>
+          <div className="card-location">
+            <MapPin size={15} strokeWidth={1.8} aria-hidden="true" />
+            <span>{stay.location}</span>
           </div>
         </div>
-        <p className="stay-highlight">
-          <Sparkles size={15} aria-hidden="true" />
+
+        <div className="stay-dates-row" aria-label="Reservation dates">
+          <Calendar size={18} strokeWidth={1.7} className="dates-calendar-icon" aria-hidden="true" />
+          <div className="dates-group">
+            <div className="date-column">
+              <span className="date-label">CHECK-IN</span>
+              <strong className="date-value">{hasWorkbookValue(checkIn) ? checkIn : "Date to be confirmed"}</strong>
+            </div>
+            <div className="date-column">
+              <span className="date-label">CHECK-OUT</span>
+              <strong className="date-value">{hasWorkbookValue(checkOut) ? checkOut : "Date to be confirmed"}</strong>
+            </div>
+          </div>
+        </div>
+
+        <p className="card-highlight stay">
+          <Luggage size={15} strokeWidth={1.8} aria-hidden="true" />
           <span>
-            {hasWorkbookValue(stay.highlight)
-              ? stay.highlight
-              : "More details about this stay coming soon."}
+            <strong>Don&apos;t miss:</strong> {cleanHighlight(stay.highlight)}
           </span>
         </p>
-        <button className="card-show-link" type="button">
-          Show <span aria-hidden="true">→</span>
+
+        <button className="card-action-btn" type="button">
+          <span>View stay details</span>
+          <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
         </button>
       </div>
     </article>
