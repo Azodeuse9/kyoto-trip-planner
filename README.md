@@ -47,39 +47,13 @@ Record observations during the researcher session; no guest results have been en
 
 ## Research Session Browser Evidence
 
-Captured from fresh private browser contexts on the public Vercel deployment. Full-page captures keep all recommendations visible on the phone.
+Captured from fresh private browser contexts on the public Vercel deployment.
 
 ### Laptop — 1440 × 1000
 
 **Compact recommendation cards**
 
 ![Compact Stay, Experience, and Food recommendation cards](public/screenshots/18-desktop-recommendations-updated.png)
-
-**Happy path**
-
-![Laptop happy path at 1440 × 1000](public/screenshots/06-laptop-happy-path.png)
-
-**Error state**
-
-![Laptop error state at 1440 × 1000](public/screenshots/07-laptop-error-state.png)
-
-**Retry success**
-
-![Laptop retry success at 1440 × 1000](public/screenshots/08-laptop-retry-success.png)
-
-### Phone — 390 × 844
-
-**Happy path**
-
-![Phone happy path at 390 × 844](public/screenshots/09-mobile-happy-path.png)
-
-**Error state**
-
-![Phone error state at 390 × 844](public/screenshots/10-mobile-error-state.png)
-
-**Retry success**
-
-![Phone retry success at 390 × 844](public/screenshots/11-mobile-retry-success.png)
 
 ## Real Android Device Testing
 
@@ -167,8 +141,6 @@ On mobile, each card switches to a compact horizontal layout with the image on t
 
 After the guest submits a trip request, the message input temporarily locks while an animated thinking indicator appears in the assistant reply bubble.
 
-![Thinking state after submitting a trip request](screenshots/01-thinking-state.png)
-
 ### 02. Error State
 
 Type `break my trip` in the chat to simulate a failed trip-planning response. The trigger is trimmed and compared without regard to letter casing, so `BREAK MY TRIP` and ` Break My Trip ` trigger the same error.
@@ -179,10 +151,6 @@ The mock response in `data/mockBrokenResponse.ts` is intentionally incomplete an
 
 The **Try Again** button retries the original request in the same conversation turn, bypasses the forced broken response, and restores the three valid workbook-backed recommendation cards. The original user message is not duplicated.
 
-![Kyoto Trip Planner error state](public/screenshots/04-error-state.png)
-
-![Kyoto Trip Planner retry success](public/screenshots/05-retry-success.png)
-
 ### 03. Cards State
 
 After a successful request or retry, the planner displays all three recommendations together in this order:
@@ -190,8 +158,6 @@ After a successful request or retry, the planner displays all three recommendati
 1. **Stay**
 2. **Experience**
 3. **Food**
-
-![Successful response with Stay, Experience, and Food recommendations](screenshots/03-cards-state.png)
 
 ## Technology Stack
 
@@ -230,10 +196,6 @@ The chat includes these clickable example trip requests:
 
 Each normal request returns the same workbook-backed mock response with Stay, Experience, and Food recommendations. Type `break my trip` to test the inline error and **Try Again** recovery flow.
 
-## Happy-Path Preview
-
-![Kyoto Trip Planner happy path](screenshots/03-cards-state.png)
-
 ## Local Development
 
 From the project directory, run:
@@ -255,7 +217,6 @@ kyoto-trip-planner/
 ├── icons/
 ├── images/
 ├── public/
-├── screenshots/
 ├── types/
 ├── utils/
 ├── README.md
