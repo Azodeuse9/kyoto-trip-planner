@@ -588,6 +588,10 @@ button {
   line-height: 1.2;
 }
 
+.stay-dates-mobile {
+  display: none;
+}
+
 .experience-details-row,
 .food-details-row {
   display: flex;
@@ -925,43 +929,94 @@ button {
   .recommendation-grid {
     grid-auto-rows: auto;
     grid-template-columns: minmax(0, 1fr);
-    gap: 16px;
+    gap: 12px;
   }
 
   .recommendation-card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: auto;
-    border-radius: 18px;
+    border-radius: 16px;
+    align-items: stretch;
   }
 
   .stay-photo,
   .experience-photo,
   .food-photo {
-    height: 170px;
-    flex: 0 0 170px;
+    width: clamp(96px, 29vw, 112px);
+    height: auto;
+    min-height: 100%;
+    flex: 0 0 clamp(96px, 29vw, 112px);
+    align-self: stretch;
+  }
+
+  .stay-photo-label,
+  .experience-photo-label,
+  .food-photo-label {
+    display: none;
+  }
+
+  .save-button {
+    top: 8px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .save-button svg {
+    width: 14px;
+    height: 14px;
   }
 
   .stay-content,
   .experience-content,
   .food-content {
     min-width: 0;
-    padding: 16px;
-    gap: 14px;
+    padding: 10px 12px 12px;
+    gap: 7px;
   }
 
   .stay-heading,
   .experience-heading,
   .food-heading {
-    gap: 8px;
+    gap: 6px;
+  }
+
+  .card-title-block {
+    gap: 3px;
   }
 
   .card-title-block h3 {
-    font-size: 16px;
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .card-location {
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .card-location span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-location svg,
+  .stay-card .card-location svg,
+  .experience-card .card-location svg,
+  .food-card .card-location svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    color: #9ca3af;
   }
 
   .card-type {
-    padding: 4px 6px;
+    padding: 3px 6px;
     font-size: 9px;
   }
 
@@ -969,33 +1024,96 @@ button {
     font-size: 14px;
   }
 
+  .card-price span {
+    font-size: 11px;
+    font-weight: 500;
+  }
+
   .stay-dates-row {
+    min-height: 0;
     gap: 8px;
   }
 
+  .stay-dates-row .dates-calendar-icon {
+    width: 16px;
+    height: 16px;
+  }
+
   .stay-dates-row .dates-group {
-    gap: 20px;
+    gap: 18px;
+  }
+
+  .stay-dates-row .date-label {
+    font-size: 7.5px;
   }
 
   .stay-dates-row .date-value {
-    font-size: 12px;
+    font-size: 11px;
+  }
+
+  .stay-dates-mobile {
+    display: none;
   }
 
   .experience-details-row,
   .food-details-row {
-    gap: 14px;
+    min-height: 0;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+
+  .experience-details-row .detail-item,
+  .food-details-row .detail-item {
+    min-width: 0;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .experience-details-row .detail-item span,
+  .food-details-row .detail-item span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .experience-details-row .detail-item svg,
+  .food-details-row .detail-item svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    color: #9ca3af;
   }
 
   .card-highlight {
-    padding: 10px 12px;
-    font-size: 11.5px;
+    display: flex;
+    padding: 7px 9px;
+    gap: 6px;
+    font-size: 10.5px;
+  }
+
+  .card-highlight svg {
+    width: 13px;
+    height: 13px;
   }
 
   .card-action-btn {
-    height: 42px;
-    min-height: 42px;
-    padding: 0 14px;
-    font-size: 13px;
+    display: flex;
+    width: 100%;
+    height: 34px;
+    min-height: 34px;
+    margin-top: 2px;
+    padding: 0 10px;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .card-action-btn svg {
+    width: 14px;
+    height: 14px;
   }
 
   .error-bubble {

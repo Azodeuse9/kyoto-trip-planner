@@ -63,6 +63,12 @@ export function StayCard({ stay }: { stay: StayData }) {
           </div>
         </div>
 
+        <div className="stay-dates-mobile" aria-label="Reservation dates">
+          <Calendar size={24} strokeWidth={1.7} aria-hidden="true" />
+          <span>Check In - <strong>{hasWorkbookValue(checkIn) ? checkIn : "Date to be confirmed"}</strong></span>
+          <span>Check Out - <strong>{hasWorkbookValue(checkOut) ? checkOut : "Date to be confirmed"}</strong></span>
+        </div>
+
         <p className="card-highlight stay">
           <Luggage size={15} strokeWidth={1.8} aria-hidden="true" />
           <span>
