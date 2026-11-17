@@ -53,7 +53,7 @@ Captured from fresh private browser contexts on the public Vercel deployment. Fu
 
 **Compact recommendation cards**
 
-![Compact Stay, Experience, and Food recommendation cards](public/screenshots/16-desktop-recommendations.png)
+![Compact Stay, Experience, and Food recommendation cards](public/screenshots/18-desktop-recommendations-updated.png)
 
 **Happy path**
 
@@ -83,25 +83,29 @@ Captured from fresh private browser contexts on the public Vercel deployment. Fu
 
 ## Real Android Device Testing
 
-These screenshots were captured on a physical Android phone, not a resized desktop viewport. The happy-path image shows all three recommendation cards, including the complete Food card above the fixed composer. The retry-success image shows the successful recommendation response; the thinking/loading screenshot is not used as retry-success evidence.
+These screenshots were captured on a physical Android phone, not a resized desktop viewport. The happy-path images show all three recommendation cards, including the complete Food card, in the compact mobile layout. The retry-success image shows the successful recommendation response; the thinking/loading screenshot is shown separately and is not used as retry-success evidence.
 
 **Happy path**
 
-![Real Android phone happy path](public/screenshots/12-real-phone-happy-path.png)
+![Real Android phone happy path](public/screenshots/12-real-phone-happy-path.jpg)
+
+![Real Android phone happy path, scrolled to Experience and Food](public/screenshots/12b-real-phone-happy-path-scrolled.jpg)
+
+**Composer input**
+
+![Real Android phone with "break my trip" typed in the composer](public/screenshots/15-real-phone-keyboard.jpg)
+
+**Thinking state**
+
+![Real Android phone thinking state after submitting "break my trip"](public/screenshots/17-real-phone-thinking.jpg)
 
 **Error state**
 
-![Real Android phone error state](public/screenshots/13-real-phone-error-state.png)
+![Real Android phone error state](public/screenshots/13-real-phone-error-state.jpg)
 
 **Retry success**
 
 ![Real Android phone retry success](public/screenshots/14-real-phone-retry-success.png)
-
-**Keyboard open**
-
-The physical Android test confirmed that the composer remains visible with the keyboard open and that messaging and touch controls remain usable. The keyboard-open screenshot provides supporting visual evidence.
-
-![Real Android phone with keyboard open](public/screenshots/15-real-phone-keyboard.png)
 
 ## Project Overview
 
@@ -121,7 +125,9 @@ The Kyoto Trip Planner explores a simpler alternative to traditional travel sear
 
 ## Recommendation Cards
 
-The desktop cards share a compact frame, image aspect ratio, clear typography, balanced padding, and bottom-aligned **Show →** button. Their details remain specific to each recommendation: stay dates and highlight, experience schedule and duration, and food hours and must-order item. Category tags use muted rose, sage, and amber. The existing compact, stacked mobile card layout is preserved.
+The desktop cards share a compact frame, image aspect ratio, clear typography, balanced padding, and bottom-aligned **Show →** button. Their details remain specific to each recommendation: stay dates and highlight, experience schedule and duration, and food hours and must-order item. Category tags use muted rose, sage, and amber; location, date, time, and food detail icons use a single neutral light grey across all three cards.
+
+On mobile, each card switches to a compact horizontal layout with the image on the left and details on the right, keeping the full action button visible so all three cards fit comfortably on a phone screen.
 
 **Show →** is a visual button only; it does not navigate or trigger a booking. Recommendation content uses the existing mock data.
 

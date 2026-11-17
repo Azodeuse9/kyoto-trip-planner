@@ -537,16 +537,10 @@ button {
   line-height: 1.2;
 }
 
-.stay-card .card-location svg {
-  color: #b51038;
-}
-
-.experience-card .card-location svg {
-  color: #004924;
-}
-
+.stay-card .card-location svg,
+.experience-card .card-location svg,
 .food-card .card-location svg {
-  color: #7a5000;
+  color: #9ca3af;
 }
 
 .stay-dates-row {
@@ -611,14 +605,10 @@ button {
   line-height: 1.2;
 }
 
-.experience-details-row .detail-item svg {
-  flex-shrink: 0;
-  color: #004924;
-}
-
+.experience-details-row .detail-item svg,
 .food-details-row .detail-item svg {
   flex-shrink: 0;
-  color: #7a5000;
+  color: #9ca3af;
 }
 
 .card-highlight {
@@ -1035,8 +1025,8 @@ button {
   }
 
   .stay-dates-row .dates-calendar-icon {
-    width: 16px;
-    height: 16px;
+    width: 13px;
+    height: 13px;
   }
 
   .stay-dates-row .dates-group {
